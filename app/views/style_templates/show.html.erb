@@ -1,0 +1,127 @@
+<h1>
+  Style #<%= @the_style.id %> details
+</h1>
+
+<article>
+  <div>
+    <a href="/styles">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_style/<%= @the_style.id %>">
+      Delete style
+    </a>
+  </div>
+  <dl>
+    <dt>
+      User
+    </dt>
+    <dd>
+      <%= @the_style.user_id %>
+    </dd>
+
+    <dt>
+      Name
+    </dt>
+    <dd>
+      <%= @the_style.name %>
+    </dd>
+
+    <dt>
+      Description
+    </dt>
+    <dd>
+      <%= @the_style.description %>
+    </dd>
+
+    <dt>
+      Rules json
+    </dt>
+    <dd>
+      <%= @the_style.rules_json %>
+    </dd>
+
+    <dt>
+      Archived at
+    </dt>
+    <dd>
+      <%= @the_style.archived_at %>
+    </dd>
+
+    <dt>
+      Created at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_style.created_at) %> ago
+    </dd>
+
+    <dt>
+      Updated at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_style.updated_at) %> ago
+    </dd>
+  </dl>
+</article>
+
+<hr>
+
+
+<article>
+  <header>
+    <h2>
+      Edit style
+    </h2>
+  </header>
+
+  <form action="/modify_style/<%= @the_style.id %>"  method="post" >
+    <div>
+      <label for="user_id_box">
+        User
+      </label>
+
+      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_style.user_id %>">
+    </div>
+
+    <div>
+      <label for="name_box">
+        Name
+      </label>
+
+      <input type="text" id="name_box" name="query_name" value="<%= @the_style.name %>">
+    </div>
+
+    <div>
+      <label for="description_box">
+        Description
+      </label>
+
+      <input type="text" id="description_box" name="query_description" value="<%= @the_style.description %>">
+    </div>
+
+    <div>
+      <label for="rules_json_box">
+        Rules json
+      </label>
+
+      <input type="text" id="rules_json_box" name="query_rules_json" value="<%= @the_style.rules_json %>">
+    </div>
+
+    <div>
+      <label for="archived_at_box">
+        Archived at
+      </label>
+
+      <input type="datetime-local" id="archived_at_box" name="query_archived_at"
+         value="<%= @the_style.archived_at %>">
+    </div>
+
+    <button type="submit">
+      Update style
+    </button>
+  </form>
+</article>
+
+<hr>

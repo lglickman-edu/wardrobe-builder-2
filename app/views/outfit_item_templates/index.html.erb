@@ -1,0 +1,59 @@
+<h1>
+  List of all outfit items
+</h1>
+
+<hr>
+
+<article>
+  <header>
+    <h2>
+      Add a new outfit item
+    </h2>
+  </header>
+
+  <form action="/insert_outfit_item" method="post">
+    <div>
+      <label for="outfit_id_box">
+        Outfit
+      </label>
+
+      <input type="text" id="outfit_id_box" name="query_outfit_id">
+    </div>
+
+    <div>
+      <label for="item_id_box">
+        Item
+      </label>
+
+      <input type="text" id="item_id_box" name="query_item_id">
+    </div>
+
+    <div>
+      <label for="role_box">
+        Role
+      </label>
+
+      <input type="text" id="role_box" name="query_role">
+    </div>
+
+    <button type="submit">
+      Create outfit item
+    </button>
+  </form>
+</article>
+
+<hr>
+
+<article>
+  <ul>
+    <% @list_of_outfit_items.each do |an_outfit_item| %>
+      <li>
+        <a href="/outfit_items/<%= an_outfit_item.id %>">
+          Outfit item #<%= an_outfit_item.id %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</article>
+
+<hr>

@@ -1,0 +1,187 @@
+<h1>
+  Item #<%= @the_item.id %> details
+</h1>
+
+<article>
+  <div>
+    <a href="/items">
+      Go back
+    </a>
+  </div>
+
+  <div>
+    <a href="/delete_item/<%= @the_item.id %>">
+      Delete item
+    </a>
+  </div>
+  <dl>
+    <dt>
+      User
+    </dt>
+    <dd>
+      <%= @the_item.user_id %>
+    </dd>
+
+    <dt>
+      Name
+    </dt>
+    <dd>
+      <%= @the_item.name %>
+    </dd>
+
+    <dt>
+      Category
+    </dt>
+    <dd>
+      <%= @the_item.category %>
+    </dd>
+
+    <dt>
+      Color
+    </dt>
+    <dd>
+      <%= @the_item.color %>
+    </dd>
+
+    <dt>
+      Season
+    </dt>
+    <dd>
+      <%= @the_item.season %>
+    </dd>
+
+    <dt>
+      Image url
+    </dt>
+    <dd>
+      <%= @the_item.image_url %>
+    </dd>
+
+    <dt>
+      Notes
+    </dt>
+    <dd>
+      <%= @the_item.notes %>
+    </dd>
+
+    <dt>
+      Tags json
+    </dt>
+    <dd>
+      <%= @the_item.tags_json %>
+    </dd>
+
+    <dt>
+      Archived at
+    </dt>
+    <dd>
+      <%= @the_item.archived_at %>
+    </dd>
+
+    <dt>
+      Created at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_item.created_at) %> ago
+    </dd>
+
+    <dt>
+      Updated at
+    </dt>
+    <dd>
+      <%= time_ago_in_words(@the_item.updated_at) %> ago
+    </dd>
+  </dl>
+</article>
+
+<hr>
+
+
+<article>
+  <header>
+    <h2>
+      Edit item
+    </h2>
+  </header>
+
+  <form action="/modify_item/<%= @the_item.id %>"  method="post" >
+    <div>
+      <label for="user_id_box">
+        User
+      </label>
+
+      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_item.user_id %>">
+    </div>
+
+    <div>
+      <label for="name_box">
+        Name
+      </label>
+
+      <input type="text" id="name_box" name="query_name" value="<%= @the_item.name %>">
+    </div>
+
+    <div>
+      <label for="category_box">
+        Category
+      </label>
+
+      <input type="text" id="category_box" name="query_category" value="<%= @the_item.category %>">
+    </div>
+
+    <div>
+      <label for="color_box">
+        Color
+      </label>
+
+      <input type="text" id="color_box" name="query_color" value="<%= @the_item.color %>">
+    </div>
+
+    <div>
+      <label for="season_box">
+        Season
+      </label>
+
+      <input type="text" id="season_box" name="query_season" value="<%= @the_item.season %>">
+    </div>
+
+    <div>
+      <label for="image_url_box">
+        Image url
+      </label>
+
+      <input type="text" id="image_url_box" name="query_image_url" value="<%= @the_item.image_url %>">
+    </div>
+
+    <div>
+      <label for="notes_box">
+        Notes
+      </label>
+
+      <input type="text" id="notes_box" name="query_notes" value="<%= @the_item.notes %>">
+    </div>
+
+    <div>
+      <label for="tags_json_box">
+        Tags json
+      </label>
+
+      <input type="text" id="tags_json_box" name="query_tags_json" value="<%= @the_item.tags_json %>">
+    </div>
+
+    <div>
+      <label for="archived_at_box">
+        Archived at
+      </label>
+
+      <input type="datetime-local" id="archived_at_box" name="query_archived_at"
+         value="<%= @the_item.archived_at %>">
+    </div>
+
+    <button type="submit">
+      Update item
+    </button>
+  </form>
+</article>
+
+<hr>

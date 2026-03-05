@@ -1,0 +1,75 @@
+<h1>
+  List of all styles
+</h1>
+
+<hr>
+
+<article>
+  <header>
+    <h2>
+      Add a new style
+    </h2>
+  </header>
+
+  <form action="/insert_style" method="post">
+    <div>
+      <label for="user_id_box">
+        User
+      </label>
+
+      <input type="text" id="user_id_box" name="query_user_id">
+    </div>
+
+    <div>
+      <label for="name_box">
+        Name
+      </label>
+
+      <input type="text" id="name_box" name="query_name">
+    </div>
+
+    <div>
+      <label for="description_box">
+        Description
+      </label>
+
+      <input type="text" id="description_box" name="query_description">
+    </div>
+
+    <div>
+      <label for="rules_json_box">
+        Rules json
+      </label>
+
+      <input type="text" id="rules_json_box" name="query_rules_json">
+    </div>
+
+    <div>
+      <label for="archived_at_box">
+        Archived at
+      </label>
+
+      <input type="datetime-local" id="archived_at_box" name="query_archived_at">
+    </div>
+
+    <button type="submit">
+      Create style
+    </button>
+  </form>
+</article>
+
+<hr>
+
+<article>
+  <ul>
+    <% @list_of_styles.each do |a_style| %>
+      <li>
+        <a href="/styles/<%= a_style.id %>">
+          Style #<%= a_style.id %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</article>
+
+<hr>
