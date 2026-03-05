@@ -1,8 +1,8 @@
 class OutfitsController < ApplicationController
   def index
     matching_outfits = Outfit.all
-
-    @list_of_outfits = matching_outfits.order({ :created_at => :desc })
+    matching_user_outfits = matching_outfits.where({ :id => current_user})
+    @list_of_outfits = matching_user_outfits.order({ :created_at => :desc })
 
     render({ :template => "outfit_templates/index" })
   end
@@ -28,7 +28,7 @@ class OutfitsController < ApplicationController
     the_outfit.style_id = params.fetch("query_style_id")
 
     if the_outfit.valid?
-      the_outfit.save
+      @the_outfit.save
       redirect_to("/outfits", { :notice => "Outfit created successfully." })
     else
       redirect_to("/outfits", { :alert => the_outfit.errors.full_messages.to_sentence })

@@ -1,5 +1,5 @@
 <h1>
-  List of all outfits
+  Past Outfits
 </h1>
 
 <hr>
@@ -80,7 +80,7 @@
   <ul>
     <% @list_of_outfits.each do |an_outfit| %>
       <li>
-        <a href="/outfits/<%= an_outfit.id %>">
+        <a href="/outfits/<%= an_outfit.name %>">
           Outfit #<%= an_outfit.id %>
         </a>
       </li>

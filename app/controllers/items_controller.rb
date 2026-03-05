@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   def index
     matching_items = Item.all
-
-    @list_of_items = matching_items.order({ :created_at => :desc })
+    current_user_items = matching_items.where({ :user_id => current_user})
+    @list_of_items = current_user_items.order({ :created_at => :desc })
 
     render({ :template => "item_templates/index" })
   end

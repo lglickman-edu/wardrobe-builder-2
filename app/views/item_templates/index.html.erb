@@ -97,7 +97,7 @@
     <% @list_of_items.each do |an_item| %>
       <li>
         <a href="/items/<%= an_item.id %>">
-          Item #<%= an_item.id %>
+          <%= an_item.name %>
         </a>
       </li>
     <% end %>
