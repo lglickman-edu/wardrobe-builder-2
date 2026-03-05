@@ -20,6 +20,8 @@ gem "appdev_support"                  # Learning helpers (nicer error messages, 
 gem "cgi" # Required for Ruby 4.0+ (removed from stdlib)
 gem "tsort" # Required for Ruby 4.0+ (moving out of default gems)
 gem "devise"
+gem "carrierwave"
+gem "cloudinary"
 
 group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude" # Ruby debugger

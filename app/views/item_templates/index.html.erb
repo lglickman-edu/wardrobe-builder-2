@@ -11,13 +11,13 @@
     </h2>
   </header>
 
-  <form action="/insert_item" method="post">
+  <form action="/insert_item" method="post" enctype="multipart/form-data">
     <div>
-      <label for="user_id_box">
+      <label for="user_box">
         User
       </label>
 
-      <input type="text" id="user_id_box" name="query_user_id">
+      <input type="text" id="user_box" name="query_user">
     </div>
 
     <div>
@@ -57,7 +57,7 @@
         Image url
       </label>
 
-      <input type="text" id="image_url_box" name="query_image_url">
+      <input type="file" id="image_url_box" name="query_image_url">
     </div>
 
     <div>
