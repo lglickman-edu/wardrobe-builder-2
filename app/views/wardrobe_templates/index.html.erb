@@ -1,5 +1,58 @@
 <article>
   <form action="/generate" method="post">
+    <div>
+      <label for="weather_box">
+        Weather
+      </label>
+
+      <select id="weather_box" name="query_weather">
+        <option value="mild" selected>Mild</option>
+        <option value="hot">Hot</option>
+        <option value="cold">Cold</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="style_box">
+        Aesthetic / Vibe
+      </label>
+
+      <select id="style_box" name="query_style">
+        <option value="minimal" selected>Minimal</option>
+        <option value="smart casual">Smart Casual</option>
+        <option value="street casual">Street Casual</option>
+        <option value="monochrome">Monochrome</option>
+        <option value="relaxed">Relaxed</option>
+        <option value="elevated">Elevated</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="occasion_box">
+        Occasion
+      </label>
+
+      <select id="occasion_box" name="query_occasion">
+        <option value="everyday" selected>Everyday</option>
+        <option value="work">Work</option>
+        <option value="casual">Casual</option>
+        <option value="date night">Date Night</option>
+        <option value="going out">Going Out</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="options-box">
+        Number of Options
+      </label>
+
+      <select id="options-box" name="query_options">
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+
     <button type="submit">
       Generate
     </button>

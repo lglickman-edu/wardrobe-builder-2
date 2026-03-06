@@ -7,6 +7,10 @@ class WardrobeController < ApplicationController
 
   def generate
     items = current_user.items.where(clean: true).order(:category, :name)
+    weather = params.fetch("query_weather", "mild")
+    style = params.fetch("query_style", "minimal")
+    occasion = params.fetch("query_occasion", "everyday")
+    count = params.fetch("query_options", "1")
     @items_by_id = current_user.items.index_by(&:id)
 
     wardrobe_payload = {
@@ -42,10 +46,18 @@ class WardrobeController < ApplicationController
 
       #{wardrobe_payload.to_json}
 
-      Generate 3 outfit recommendations.
-      Occasion: everyday
-      Desired style: minimal / smart casual
-      Weather: mild
+      Generate #{count} outfit recommendations.
+
+      Occasion: #{occasion}
+      Desired style: #{style}
+      Weather: #{weather}
+
+      Requirements:
+      - Only use items from the provided wardrobe
+      - Prefer complete outfits
+      - Match the requested weather and vibe
+      - Avoid recommending heavy layers for hot weather
+      - Prefer layering and warmer pieces for cold weather
     MSG
 
     chat.schema = {
