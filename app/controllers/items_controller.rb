@@ -67,4 +67,11 @@ class ItemsController < ApplicationController
 
     redirect_to("/items", { :notice => "Item deleted successfully." } )
   end
+
+  def toggle_clean
+    @item = current_user.items.find(params[:id])
+    @item.update(clean: ActiveModel::Type::Boolean.new.cast(params[:clean]))
+
+    redirect_to("/items")
+  end
 end

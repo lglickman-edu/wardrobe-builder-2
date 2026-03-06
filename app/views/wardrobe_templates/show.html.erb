@@ -1,0 +1,31 @@
+<% @recommended_outfits %>
+<header>
+  <h1>
+    Options
+  </h1>
+</header>
+
+<div class="grid">
+  <% @recommended_outfits.each do |outfit| %>
+    <article>
+      <h3><%= outfit[:outfit_name]  %></h3>
+      <p><%= outfit[:reasoning]  %></p>
+
+      <% item_ids = outfit[:item_ids]  %>
+
+      <div class="outfit-items">
+        <% item_ids.each do |item_id| %>
+          <% item = @items_by_id[item_id.to_i] %>
+          <% next if item.nil? %>
+
+          <div class="outfit-item">
+            <p><%= item.name %></p>
+            <img src="<%= item.image_url %>" alt="<%= item.name %>" width="250">
+          </div>
+        <% end %>
+      </div>
+    </article>
+  <% end %>
+</div>
+
+    

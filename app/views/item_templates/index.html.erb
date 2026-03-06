@@ -78,6 +78,28 @@
             <%= an_item.name %>
           </a>
         </li>
+
+        <form action="/items/<%= an_item.id %>/toggle_clean" method="post" style="display: inline; margin-left: 12px;">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="patch">
+
+          <input
+            type="hidden"
+            name="clean"
+            value="0"
+          >
+
+          <input
+            type="checkbox"
+            name="clean"
+            value="1"
+            <%= "checked" if an_item.clean %>
+            onchange="this.form.submit();"
+          >
+
+          <label>Clean</label>
+        </form>
+
       <% end %>
     </ul>
   </article>
