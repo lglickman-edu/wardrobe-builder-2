@@ -57,7 +57,19 @@
                 </li>
                 <li><a href="/items">My Closet</a></li>
                 <li><a href="/outfits">Past Outfits</a></li>
-                <li><a href="/users/sign_in">Sign in</a></li>
+                <% if user_signed_in? %>
+                  <li>
+                    <a href="/users/sign_out" data-turbo-method="delete">
+                      Sign out
+                    </a>
+                  </li>
+                <% else %>
+                  <li>
+                    <a href="/users/sign_in">
+                      Sign in
+                    </a>
+                  </li>
+                <% end %>
               </ul>
             </nav>
           </div>
