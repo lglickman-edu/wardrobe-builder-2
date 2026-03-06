@@ -34,4 +34,7 @@
       </div>
     <% end %>
   </div>
+  <form action="/delete_outfit/<%= @the_outfit.id %>" method="get">
+    <button type="submit">Delete Outfit</button>
+  </form>
 </article>
