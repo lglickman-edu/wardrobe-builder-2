@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def index
     matching_items = Item.all
-    current_user_items = matching_items.where({ :user_id => current_user})
+    current_user_items = matching_items.where({ :user_id => current_user.id})
     @list_of_items = current_user_items.order({ :created_at => :desc })
 
     render({ :template => "item_templates/index" })
@@ -19,15 +19,15 @@ class ItemsController < ApplicationController
 
   def create
     the_item = Item.new
-    the_item.user_id = params.fetch("query_user_id")
+    the_item.user_id = current_user.id
     the_item.name = params.fetch("query_name")
     the_item.category = params.fetch("query_category")
     the_item.color = params.fetch("query_color")
     the_item.season = params.fetch("query_season")
-    the_item.image_url = params.fetch("image_url")
+    the_item.image_url = params.fetch("query_image_url")    
     the_item.notes = params.fetch("query_notes")
-    the_item.tags_json = params.fetch("query_tags_json")
-    the_item.archived_at = params.fetch("query_archived_at")
+    #the_item.tags_json = params.fetch("query_tags_json")
+    the_item.archived_at = Time.current
 
     if the_item.valid?
       the_item.save
@@ -41,15 +41,15 @@ class ItemsController < ApplicationController
     the_id = params.fetch("path_id")
     the_item = Item.where({ :id => the_id }).at(0)
 
-    the_item.user_id = params.fetch("query_user_id")
+    the_item.user_id = current_user.id
     the_item.name = params.fetch("query_name")
     the_item.category = params.fetch("query_category")
     the_item.color = params.fetch("query_color")
     the_item.season = params.fetch("query_season")
     the_item.image_url = params.fetch("image_url")
     the_item.notes = params.fetch("query_notes")
-    the_item.tags_json = params.fetch("query_tags_json")
-    the_item.archived_at = params.fetch("query_archived_at")
+    #the_item.tags_json = params.fetch("query_tags_json")
+    the_item.archived_at = Time.current
 
     if the_item.valid?
       the_item.save

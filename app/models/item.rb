@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  archived_at :datetime
 #  category    :string
+#  clean       :boolean          default(TRUE)
 #  color       :string
 #  image_url   :string
 #  name        :string

@@ -54,7 +54,7 @@
       Image url
     </dt>
     <dd>
-      <%= @the_item.image_url %>
+      <img src="<%= @the_item.image_url %>" width=500>
     </dd>
 
     <dt>
@@ -62,20 +62,6 @@
     </dt>
     <dd>
       <%= @the_item.notes %>
-    </dd>
-
-    <dt>
-      Tags json
-    </dt>
-    <dd>
-      <%= @the_item.tags_json %>
-    </dd>
-
-    <dt>
-      Archived at
-    </dt>
-    <dd>
-      <%= @the_item.archived_at %>
     </dd>
 
     <dt>
@@ -105,13 +91,7 @@
   </header>
 
   <form action="/modify_item/<%= @the_item.id %>"  method="post" >
-    <div>
-      <label for="user_id_box">
-        User
-      </label>
-
-      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_item.user_id %>">
-    </div>
+    
 
     <div>
       <label for="name_box">

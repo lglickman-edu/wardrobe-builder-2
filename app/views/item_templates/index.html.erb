@@ -1,107 +1,87 @@
-<h1>
-  List of all items
-</h1>
 
-<hr>
 
-<article>
-  <header>
+
+<div class="grid">
+  <article>
+    <header>
+      <h2>
+        Add an article
+      </h2>
+    </header>
+
+    <form action="/insert_item" method="post" enctype="multipart/form-data">
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="category_box">
+          Category
+        </label>
+
+        <input type="text" id="category_box" name="query_category">
+      </div>
+
+      <div>
+        <label for="color_box">
+          Color
+        </label>
+
+        <input type="text" id="color_box" name="query_color">
+      </div>
+
+      <div>
+        <label for="season_box">
+          Season
+        </label>
+
+        <input type="text" id="season_box" name="query_season">
+      </div>
+
+      <div>
+        <label for="image_url_box">
+          Image url
+        </label>
+
+        <input type="file" id="image_url_box" name="query_image_url">
+      </div>
+
+      <div>
+        <label for="notes_box">
+          Notes
+        </label>
+
+        <input type="text" id="notes_box" name="query_notes">
+      </div>
+
+      <button type="submit">
+        Create item
+      </button>
+    </form>
+  </article>
+
+  
+  
+  <article>
     <h2>
-      Add a new item
+      My Closet
     </h2>
-  </header>
+    <ul>
+      <% @list_of_items.each do |an_item| %>
+        <li>
+          <a href="/items/<%= an_item.id %>">
+            <%= an_item.name %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </article>
 
-  <form action="/insert_item" method="post" enctype="multipart/form-data">
-    <div>
-      <label for="user_box">
-        User
-      </label>
+</div>
 
-      <input type="text" id="user_box" name="query_user">
-    </div>
-
-    <div>
-      <label for="name_box">
-        Name
-      </label>
-
-      <input type="text" id="name_box" name="query_name">
-    </div>
-
-    <div>
-      <label for="category_box">
-        Category
-      </label>
-
-      <input type="text" id="category_box" name="query_category">
-    </div>
-
-    <div>
-      <label for="color_box">
-        Color
-      </label>
-
-      <input type="text" id="color_box" name="query_color">
-    </div>
-
-    <div>
-      <label for="season_box">
-        Season
-      </label>
-
-      <input type="text" id="season_box" name="query_season">
-    </div>
-
-    <div>
-      <label for="image_url_box">
-        Image url
-      </label>
-
-      <input type="file" id="image_url_box" name="query_image_url">
-    </div>
-
-    <div>
-      <label for="notes_box">
-        Notes
-      </label>
-
-      <input type="text" id="notes_box" name="query_notes">
-    </div>
-
-    <div>
-      <label for="tags_json_box">
-        Tags json
-      </label>
-
-      <input type="text" id="tags_json_box" name="query_tags_json">
-    </div>
-
-    <div>
-      <label for="archived_at_box">
-        Archived at
-      </label>
-
-      <input type="datetime-local" id="archived_at_box" name="query_archived_at">
-    </div>
-
-    <button type="submit">
-      Create item
-    </button>
-  </form>
-</article>
-
-<hr>
-
-<article>
-  <ul>
-    <% @list_of_items.each do |an_item| %>
-      <li>
-        <a href="/items/<%= an_item.id %>">
-          <%= an_item.name %>
-        </a>
-      </li>
-    <% end %>
-  </ul>
-</article>
-
-<hr>
+  
