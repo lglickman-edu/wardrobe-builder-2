@@ -9,7 +9,7 @@
   <% @recommended_outfits.each do |outfit| %>
     <article>
       <h3><%= outfit[:outfit_name]  %></h3>
-      <p><%= outfit[:reasoning]  %></p>
+      <!--<p><%= outfit[:reasoning]  %></p>-->
 
       <% item_ids = outfit[:item_ids]  %>
 
@@ -24,6 +24,44 @@
           </div>
         <% end %>
       </div>
+      <form action="/insert_outfit" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+        <input type="hidden" name="query_name" value="<%= outfit[:outfit_name] %>">
+        <input type="hidden" name="query_occasion" value="<%= outfit[:occasion] || 'casual' %>">
+        <input type="hidden" name="query_season" value="<%= outfit[:season] || 'all' %>">
+        <input type="hidden" name="query_notes" value="<%= outfit[:reasoning] || '' %>">
+        <input type="hidden" name="query_style_id" value="<%= outfit[:style_id] %>">
+
+        <% outfit_items = [] %>
+
+        <% if outfit[:items_by_role].present? %>
+          <% outfit[:items_by_role].each do |role, value| %>
+            <% if value.is_a?(Array) %>
+              <% value.each do |item_id| %>
+                <% next if item_id.blank? %>
+                <% outfit_items << { item_id: item_id, role: role.to_s.singularize } %>
+              <% end %>
+            <% else %>
+              <% next if value.blank? %>
+              <% outfit_items << { item_id: value, role: role.to_s.singularize } %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% outfit[:item_ids].to_a.each do |item_id| %>
+            <% outfit_items << { item_id: item_id, role: nil } %>
+          <% end %>
+        <% end %>
+
+        <% outfit_items.each_with_index do |entry, idx| %>
+          <input type="hidden" name="outfit_items[<%= idx %>][item_id]" value="<%= entry[:item_id] %>">
+          <input type="hidden" name="outfit_items[<%= idx %>][role]" value="<%= entry[:role] %>">
+        <% end %>
+
+        <button type="submit">
+          Save Outfit
+        </button>
+      </form>
     </article>
   <% end %>
 </div>

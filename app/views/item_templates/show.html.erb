@@ -106,7 +106,13 @@
         Category
       </label>
 
-      <input type="text" id="category_box" name="query_category" value="<%= @the_item.category %>">
+      <select id="category_box" name="query_category">
+        <option value="tops" <%= "selected" if @the_item.category == "tops" %>>Tops</option>
+        <option value="bottoms" <%= "selected" if @the_item.category == "bottoms" %>>Bottoms</option>
+        <option value="shoes" <%= "selected" if @the_item.category == "shoes" %>>Shoes</option>
+        <option value="outerwear" <%= "selected" if @the_item.category == "outerwear" %>>Outerwear</option>
+        <option value="accessory" <%= "selected" if @the_item.category == "accessory" %>>Accessory</option>
+      </select>
     </div>
 
     <div>
@@ -118,20 +124,18 @@
     </div>
 
     <div>
-      <label for="season_box">
-        Season
-      </label>
+      <label for="season_box">Season</label>
 
-      <input type="text" id="season_box" name="query_season" value="<%= @the_item.season %>">
+      <select id="season_box" name="query_season">
+        <option value="all" <%= "selected" if @the_item.season == "all" %>>All</option>
+        <option value="spring" <%= "selected" if @the_item.season == "spring" %>>Spring</option>
+        <option value="summer" <%= "selected" if @the_item.season == "summer" %>>Summer</option>
+        <option value="fall" <%= "selected" if @the_item.season == "fall" %>>Fall</option>
+        <option value="winter" <%= "selected" if @the_item.season == "winter" %>>Winter</option>
+      </select>
     </div>
 
-    <div>
-      <label for="image_url_box">
-        Image url
-      </label>
-
-      <input type="text" id="image_url_box" name="query_image_url" value="<%= @the_item.image_url %>">
-    </div>
+    
 
     <div>
       <label for="notes_box">
@@ -141,22 +145,7 @@
       <input type="text" id="notes_box" name="query_notes" value="<%= @the_item.notes %>">
     </div>
 
-    <div>
-      <label for="tags_json_box">
-        Tags json
-      </label>
-
-      <input type="text" id="tags_json_box" name="query_tags_json" value="<%= @the_item.tags_json %>">
-    </div>
-
-    <div>
-      <label for="archived_at_box">
-        Archived at
-      </label>
-
-      <input type="datetime-local" id="archived_at_box" name="query_archived_at"
-         value="<%= @the_item.archived_at %>">
-    </div>
+    
 
     <button type="submit">
       Update item

@@ -5,83 +5,11 @@
 <hr>
 
 <article>
-  <header>
-    <h2>
-      Add a new outfit
-    </h2>
-  </header>
-
-  <form action="/insert_outfit" method="post">
-    <div>
-      <label for="user_id_box">
-        User
-      </label>
-
-      <input type="text" id="user_id_box" name="query_user_id">
-    </div>
-
-    <div>
-      <label for="name_box">
-        Name
-      </label>
-
-      <input type="text" id="name_box" name="query_name">
-    </div>
-
-    <div>
-      <label for="occasion_box">
-        Occasion
-      </label>
-
-      <input type="text" id="occasion_box" name="query_occasion">
-    </div>
-
-    <div>
-      <label for="season_box">
-        Season
-      </label>
-
-      <input type="text" id="season_box" name="query_season">
-    </div>
-
-    <div>
-      <label for="notes_box">
-        Notes
-      </label>
-
-      <input type="text" id="notes_box" name="query_notes">
-    </div>
-
-    <div>
-      <label for="archived_at_box">
-        Archived at
-      </label>
-
-      <input type="datetime-local" id="archived_at_box" name="query_archived_at">
-    </div>
-
-    <div>
-      <label for="style_id_box">
-        Style
-      </label>
-
-      <input type="text" id="style_id_box" name="query_style_id">
-    </div>
-
-    <button type="submit">
-      Create outfit
-    </button>
-  </form>
-</article>
-
-<hr>
-
-<article>
   <ul>
     <% @list_of_outfits.each do |an_outfit| %>
       <li>
-        <a href="/outfits/<%= an_outfit.name %>">
-          Outfit #<%= an_outfit.id %>
+        <a href="/outfits/<%= an_outfit.id %>">
+          <%= an_outfit.name.presence || "Outfit ##{an_outfit.id}" %>
         </a>
       </li>
     <% end %>

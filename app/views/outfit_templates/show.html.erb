@@ -1,157 +1,37 @@
-<h1>
-  Outfit #<%= @the_outfit.id %> details
-</h1>
+<header>
+  <h1>
+    <%= @the_outfit.name.presence || "Outfit ##{@the_outfit.id}" %>
+  </h1>
+</header>
 
 <article>
-  <div>
-    <a href="/outfits">
-      Go back
-    </a>
+  <% if @the_outfit.notes.present? %>
+    <p><%= @the_outfit.notes %></p>
+  <% end %>
+
+  <p>
+    <strong>Occasion:</strong> <%= @the_outfit.occasion.presence || "—" %><br>
+    <strong>Season:</strong> <%= @the_outfit.season.presence || "—" %>
+  </p>
+
+  <div class="outfit-items">
+    <% @the_outfit.outfit_items.each do |outfit_item| %>
+      <% item = @items_by_id[outfit_item.item_id] %>
+      <% next if item.nil? %>
+
+      <div class="outfit-item">
+        <% if outfit_item.role.present? %>
+          <p><strong><%= outfit_item.role.capitalize %></strong></p>
+        <% end %>
+
+        <p><%= item.name %></p>
+
+        <% if item.image_url.present? %>
+          <img src="<%= item.image_url.url %>" alt="<%= item.name %>" width="250">
+        <% else %>
+          <p>No image available</p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-
-  <div>
-    <a href="/delete_outfit/<%= @the_outfit.id %>">
-      Delete outfit
-    </a>
-  </div>
-  <dl>
-    <dt>
-      User
-    </dt>
-    <dd>
-      <%= @the_outfit.user_id %>
-    </dd>
-
-    <dt>
-      Name
-    </dt>
-    <dd>
-      <%= @the_outfit.name %>
-    </dd>
-
-    <dt>
-      Occasion
-    </dt>
-    <dd>
-      <%= @the_outfit.occasion %>
-    </dd>
-
-    <dt>
-      Season
-    </dt>
-    <dd>
-      <%= @the_outfit.season %>
-    </dd>
-
-    <dt>
-      Notes
-    </dt>
-    <dd>
-      <%= @the_outfit.notes %>
-    </dd>
-
-    <dt>
-      Archived at
-    </dt>
-    <dd>
-      <%= @the_outfit.archived_at %>
-    </dd>
-
-    <dt>
-      Style
-    </dt>
-    <dd>
-      <%= @the_outfit.style_id %>
-    </dd>
-
-    <dt>
-      Created at
-    </dt>
-    <dd>
-      <%= time_ago_in_words(@the_outfit.created_at) %> ago
-    </dd>
-
-    <dt>
-      Updated at
-    </dt>
-    <dd>
-      <%= time_ago_in_words(@the_outfit.updated_at) %> ago
-    </dd>
-  </dl>
 </article>
-
-<hr>
-
-
-<article>
-  <header>
-    <h2>
-      Edit outfit
-    </h2>
-  </header>
-
-  <form action="/modify_outfit/<%= @the_outfit.id %>"  method="post" >
-    <div>
-      <label for="user_id_box">
-        User
-      </label>
-
-      <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_outfit.user_id %>">
-    </div>
-
-    <div>
-      <label for="name_box">
-        Name
-      </label>
-
-      <input type="text" id="name_box" name="query_name" value="<%= @the_outfit.name %>">
-    </div>
-
-    <div>
-      <label for="occasion_box">
-        Occasion
-      </label>
-
-      <input type="text" id="occasion_box" name="query_occasion" value="<%= @the_outfit.occasion %>">
-    </div>
-
-    <div>
-      <label for="season_box">
-        Season
-      </label>
-
-      <input type="text" id="season_box" name="query_season" value="<%= @the_outfit.season %>">
-    </div>
-
-    <div>
-      <label for="notes_box">
-        Notes
-      </label>
-
-      <input type="text" id="notes_box" name="query_notes" value="<%= @the_outfit.notes %>">
-    </div>
-
-    <div>
-      <label for="archived_at_box">
-        Archived at
-      </label>
-
-      <input type="datetime-local" id="archived_at_box" name="query_archived_at"
-         value="<%= @the_outfit.archived_at %>">
-    </div>
-
-    <div>
-      <label for="style_id_box">
-        Style
-      </label>
-
-      <input type="text" id="style_id_box" name="query_style_id" value="<%= @the_outfit.style_id %>">
-    </div>
-
-    <button type="submit">
-      Update outfit
-    </button>
-  </form>
-</article>
-
-<hr>

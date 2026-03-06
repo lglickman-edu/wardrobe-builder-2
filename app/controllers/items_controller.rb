@@ -27,8 +27,8 @@ class ItemsController < ApplicationController
     the_item.image_url = params.fetch("query_image_url")    
     the_item.notes = params.fetch("query_notes")
     #the_item.tags_json = params.fetch("query_tags_json")
-    the_item.archived_at = Time.current
-
+    the_item.archived_at = nil
+    
     if the_item.valid?
       the_item.save
       redirect_to("/items", { :notice => "Item created successfully." })
@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
     the_item.image_url = params.fetch("image_url")
     the_item.notes = params.fetch("query_notes")
     #the_item.tags_json = params.fetch("query_tags_json")
-    the_item.archived_at = Time.current
+    the_item.archived_at = nil
 
     if the_item.valid?
       the_item.save

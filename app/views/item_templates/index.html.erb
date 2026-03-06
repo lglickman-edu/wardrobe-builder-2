@@ -24,7 +24,14 @@
           Category
         </label>
 
-        <input type="text" id="category_box" name="query_category">
+        <select id="category_box" name="query_category">
+          <option value="">Select category</option>
+          <option value="tops">Tops</option>
+          <option value="bottoms">Bottoms</option>
+          <option value="shoes">Shoes</option>
+          <option value="outerwear">Outerwear</option>
+          <option value="accessory">Accessory</option>
+        </select>
       </div>
 
       <div>
@@ -40,7 +47,14 @@
           Season
         </label>
 
-        <input type="text" id="season_box" name="query_season">
+        <select id="season_box" name="query_season">
+          <option value="">Select a season</option>
+          <option value="all">All</option>
+          <option value="spring">Spring</option>
+          <option value="summer">Summer</option>
+          <option value="fall">Fall</option>
+          <option value="winter">Winter</option>
+        </select>
       </div>
 
       <div>
@@ -74,31 +88,30 @@
     <ul>
       <% @list_of_items.each do |an_item| %>
         <li>
-          <a href="/items/<%= an_item.id %>">
-            <%= an_item.name %>
-          </a>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="/items/<%= an_item.id %>">
+              <%= an_item.name %>
+            </a>
+
+            <form action="/items/<%= an_item.id %>/toggle_clean" method="post" style="margin: 0;">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input type="hidden" name="_method" value="patch">
+              <input type="hidden" name="clean" value="0">
+
+              <label style="margin-bottom: 0;">
+                <input
+                  type="checkbox"
+                  name="clean"
+                  value="1"
+                  role="switch"
+                  <%= "checked" if an_item.clean %>
+                  onchange="this.form.submit();"
+                >
+                <%= an_item.clean ? "Clean" : "Dirty" %>
+              </label>
+            </form>
+          </div>
         </li>
-
-        <form action="/items/<%= an_item.id %>/toggle_clean" method="post" style="display: inline; margin-left: 12px;">
-          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-          <input type="hidden" name="_method" value="patch">
-
-          <input
-            type="hidden"
-            name="clean"
-            value="0"
-          >
-
-          <input
-            type="checkbox"
-            name="clean"
-            value="1"
-            <%= "checked" if an_item.clean %>
-            onchange="this.form.submit();"
-          >
-
-          <label>Clean</label>
-        </form>
 
       <% end %>
     </ul>
