@@ -46,7 +46,6 @@ class ItemsController < ApplicationController
     the_item.category = params.fetch("query_category")
     the_item.color = params.fetch("query_color")
     the_item.season = params.fetch("query_season")
-    the_item.image_url = params.fetch("image_url")
     the_item.notes = params.fetch("query_notes")
     #the_item.tags_json = params.fetch("query_tags_json")
     the_item.archived_at = nil
